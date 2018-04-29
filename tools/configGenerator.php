@@ -12,17 +12,17 @@ $configs = [
 ];
 
 foreach ($configs as $config) {
-    $template = file_get_contents(__DIR__ . 'configs.example');
+    $template = file_get_contents(__DIR__ . '/configs.example');
     foreach ($format as $index => $f) {
         $template = envReplace($f, $config[$index], $template);
     }
-    file_put_contents(__DIR__ . '../config/' . $config[0], $template);
+    file_put_contents(__DIR__ . '/../config/' . $config[0], $template);
 }
 
 function envReplace($key, $value, $content)
 {
     return preg_replace(
-        '/^' . $key . '=.*' . '/',
+        '/^' . $key . '=.*' . '/m',
         $key . '=' . $value,
         $content
     );
