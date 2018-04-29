@@ -43,10 +43,10 @@ $dotenv->load();
 // Check ENV_NAME
 if (strcmp(getenv('ENV_NAME'), $config)) {
     Log::debug('环境文件内置变量与文件名不符，修改中……', []);
-    file_put_contents(__DIR__ . '/../config/' . $config, preg_replace(
+    file_put_contents(__DIR__ . '/config/' . $config, preg_replace(
         '/^' . 'ENV_NAME' . '=' . getenv('ENV_NAME') . '/m',
         'ENV_NAME' . '=' . $config,
-        file_get_contents(__DIR__ . '/../config/' . $config)
+        file_get_contents(__DIR__ . '/config/' . $config)
     ));
 }
 
