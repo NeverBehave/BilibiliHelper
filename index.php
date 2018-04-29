@@ -12,13 +12,13 @@
 require 'vendor/autoload.php';
 
 use Dotenv\Dotenv;
-use metowolf\Bilibili\Curl;
 use metowolf\Bilibili\Daily;
 use metowolf\Bilibili\GiftSend;
 use metowolf\Bilibili\Heart;
 use metowolf\Bilibili\Login;
 use metowolf\Bilibili\Silver;
 use metowolf\Bilibili\Task;
+use metowolf\Bilibili\Log;
 
 // timezone
 date_default_timezone_set('Asia/Shanghai');
@@ -26,13 +26,26 @@ date_default_timezone_set('Asia/Shanghai');
 // load config
 $dotenv = new Dotenv(__DIR__, '.env');
 $dotenv->load();
-$dotenv = new Dotenv(__DIR__, 'config');
+
+$config = 'config';
+
+if (!empty($argv[1])) {
+    $config = $argv[1];
+    Log::debug('从命令行参数读取配置文件！', [$config]);
+} else {
+    Log::debug('没有检测到命令行参数，使用默认参数', ['config']);
+}
+
+$dotenv = new Dotenv(__DIR__ . '/config/', $config);
 $dotenv->load();
+Log::info('配置文件读取完毕！', [$config]);
+
 
 // load ACCESS_KEY
 Login::run();
 $dotenv->overload();
 
+Log::info('登陆完成！准备进入循环啦XD', []);
 // run
 while (true) {
     if (!Login::check()) {
