@@ -27,6 +27,7 @@ date_default_timezone_set('Asia/Shanghai');
 $dotenv = new Dotenv(__DIR__, '.env');
 $dotenv->load();
 
+// Log User config
 $config = 'config';
 
 if (!empty($argv[1])) {
@@ -38,8 +39,19 @@ if (!empty($argv[1])) {
 
 $dotenv = new Dotenv(__DIR__ . '/config/', $config);
 $dotenv->load();
-Log::info('配置文件读取完毕！', [$config]);
 
+// Check ENV_NAME
+if (strcmp(getenv('ENV_NAME'), $config)) {
+    Log::debug('环境文件内置变量与文件名不符，修改中……', []);
+    file_put_contents(__DIR__ . '/../config/' . $config, preg_replace(
+        '/^' . 'ENV_NAME' . '=' . getenv('ENV_NAME') . '/m',
+        'ENV_NAME' . '=' . $config,
+        file_get_contents(__DIR__ . '/../config/' . $config)
+    ));
+}
+
+Log::info('配置文件读取完毕！', [$config]);
+$dotenv->overload();
 
 // load ACCESS_KEY
 Login::run();

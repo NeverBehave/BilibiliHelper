@@ -12,6 +12,7 @@ APP_PASS=
 # 自动生成
 ACCESS_TOKEN=
 REFRESH_TOKEN=
+ENV_NAME=
 
 # 调试模式
 APP_DEBUG=true

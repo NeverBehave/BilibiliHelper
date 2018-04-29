@@ -74,7 +74,7 @@ class Login
             return false;
         }
 
-        Log::info('令牌有效期: '.date('Y-m-d H:i:s', $data['ts']+$data['data']['expires_in']));
+        Log::info('令牌有效期: ' . date('Y-m-d H:i:s', $data['ts'] + $data['data']['expires_in']));
 
         return $data['data']['expires_in'] > 86400;
     }
@@ -131,7 +131,7 @@ class Login
 
         $public_key = $data['data']['key'];
         $hash = $data['data']['hash'];
-        openssl_public_encrypt($hash.$pass, $crypt, $public_key);
+        openssl_public_encrypt($hash . $pass, $crypt, $public_key);
 
         // login
 
@@ -165,20 +165,20 @@ class Login
     protected static function overload($access_token, $refresh_token)
     {
         self::writeNewEnvironmentFileWith('ACCESS_TOKEN', $access_token);
-        putenv('ACCESS_TOKEN='.$access_token);
-        Log::info(' > access token: '.$access_token);
+        putenv('ACCESS_TOKEN=' . $access_token);
+        Log::info(' > access token: ' . $access_token);
 
         self::writeNewEnvironmentFileWith('REFRESH_TOKEN', $refresh_token);
-        putenv('REFRESH_TOKEN='.$refresh_token);
-        Log::info(' > refresh token: '.$refresh_token);
+        putenv('REFRESH_TOKEN=' . $refresh_token);
+        Log::info(' > refresh token: ' . $refresh_token);
     }
 
     protected static function writeNewEnvironmentFileWith($key, $value)
     {
-        file_put_contents(__DIR__.'/../config', preg_replace(
-            '/^'.$key.'='.getenv($key).'/m',
-            $key.'='.$value,
-            file_get_contents(__DIR__.'/../config')
+        file_put_contents(__DIR__ . '/../config/' . getenv('ENV_NAME'), preg_replace(
+            '/^' . $key . '=' . getenv($key) . '/m',
+            $key . '=' . $value,
+            file_get_contents(__DIR__ . '/../config/' . getenv('ENV_NAME'))
         ));
     }
 }
