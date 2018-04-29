@@ -1,4 +1,4 @@
 /vendor/
-config/*
+config
 *.log
 .idea
