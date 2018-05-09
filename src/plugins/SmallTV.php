@@ -22,6 +22,9 @@ class SmallTV extends Base
         if (!static::data('smallTV')) {
             static::data('smallTV', []);
         }
+        if (!static::$config['data']['danmaku']['smalltv']) {
+            static::$config['data']['danmaku']['smalltv'] = [];
+        }
     }
 
     protected static function work()

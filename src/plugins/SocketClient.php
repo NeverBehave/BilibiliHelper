@@ -56,6 +56,7 @@ class SocketClient extends Base
             $socket->close();
             static::$config['data'][static::PLUGIN_NAME]['socket'] = NULL;
         }
+        Log::debug('监听服务器心跳包已正常发送！', []);
     }
 
     protected static function getContent()
@@ -71,6 +72,11 @@ class SocketClient extends Base
                 // Finished
             }
         }
+        if (empty($result)) {
+            Log::debug('本次没有获得数据！：' . $result, []);
+            return '[]';
+        }
+        Log::debug('本次获得了数据：' . $result, []);
         return $result;
     }
 
@@ -78,17 +84,21 @@ class SocketClient extends Base
     {
         $result = json_decode($data, true);
         if ($result === NULL) {
-            Log::warning('监控服务器传入了无法解析的数据！', []);
-            return '{}';
+            Log::warning('监控服务器传入了无法解析的数据！:' . $data, []);
+            return [];
+        } else if (empty($result)) {
+            return [];
         }
         return $result;
     }
 
     protected static function unpack(array $data)
     {
-        foreach ($data as $pluginName => $section) { // Key => section
-            foreach ($section as $key => $value) {
-                self::setValue($pluginName, $section, $key, $value);
+        foreach ($data as $pluginName => $section) {
+            foreach ($section as $pair) {
+                foreach ($pair as $key => $value) {
+                    self::setValue($pluginName, $section, $key, $value);
+                }
             }
         }
     }

@@ -19,7 +19,9 @@ use BilibiliHelper\Plugin\Group;
 use BilibiliHelper\Plugin\Heart;
 use BilibiliHelper\Plugin\Silver;
 use BilibiliHelper\Plugin\SmallTV;
+use BilibiliHelper\Plugin\SocketClient;
 use BilibiliHelper\Plugin\Task;
+use Socket\Raw\Socket;
 
 class Helper
 {
@@ -44,7 +46,7 @@ class Helper
         $this->set('smallTV', SmallTV::getInstance());
         $this->set('task', Task::getInstance());
         //$this->set('websocket', Danmaku::getInstance());
-        $this->set('socketClient', Danmaku::getInstance());
+        $this->set('socketClient', SocketClient::getInstance());
     }
 
     public function get($name)
