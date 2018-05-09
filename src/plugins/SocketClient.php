@@ -73,7 +73,7 @@ class SocketClient extends Base
             }
         }
         if (empty($result)) {
-            Log::debug('本次没有获得数据！：' . $result, []);
+            Log::debug('本次没有获得数据！', []);
             return '[]';
         }
         Log::debug('本次获得了数据：' . $result, []);
