@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "800160c777c97c8eaaeafc54dc41e803",
+    "content-hash": "eb7a65abd9eb979fe71917a93d8a0760",
     "packages": [
         {
             "name": "bramus/ansi-php",
@@ -87,6 +87,58 @@
             ],
             "description": "Colored Line Formatter for Monolog",
             "time": "2015-01-07T22:12:35+00:00"
+        },
+        {
+            "name": "clue/socket-raw",
+            "version": "v1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/clue/php-socket-raw.git",
+                "reference": "8a10282bcb1e45e076a8a8285237681380e55ea5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/clue/php-socket-raw/8a10282bcb1e45e076a8a8285237681380e55ea5.zip",
+                "reference": "8a10282bcb1e45e076a8a8285237681380e55ea5",
+                "shasum": ""
+            },
+            "require": {
+                "ext-sockets": "*",
+                "php": ">=5.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Socket\\Raw\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Christian Lück",
+                    "email": "christian@lueck.tv"
+                }
+            ],
+            "description": "Simple and lightweight OOP wrapper for PHP's low level sockets extension (ext-sockets)",
+            "homepage": "https://github.com/clue/php-socket-raw",
+            "keywords": [
+                "Socket",
+                "client",
+                "datagram",
+                "dgram",
+                "icmp",
+                "ipv6",
+                "server",
+                "stream",
+                "tcp",
+                "udg",
+                "udp",
+                "unix"
+            ],
+            "time": "2015-03-18T23:48:01+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",

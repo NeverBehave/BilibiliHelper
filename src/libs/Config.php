@@ -27,7 +27,7 @@ class Config
 
     public static function parse($configName)
     {
-        $conf = new Dotenv(__DIR__.'/../../', $configName);
+        $conf = new Dotenv(__DIR__ . '/../../', $configName);
 
         // 检查配置文件完整性
         try {
@@ -41,6 +41,8 @@ class Config
             $conf->required(['SMALLTV_HOURS']);
             // 网络设置
             $conf->required(['NETWORK_PROXY']);
+            $conf->required(['SOCKET_SERVER_PORT'])->isInteger();
+            $conf->required(['SOCKET_SERVER_ADDR']);
             // 日志设置
             $conf->required(['APP_DEBUG', 'APP_MULTIPLE'])->allowedValues(['true', 'false']);
             $conf->required(['APP_USER_IDENTITY', 'CALLBACK_URL']);
@@ -55,7 +57,7 @@ class Config
         }
 
         return [
-            'path' => __DIR__.'/../../'.$configName,
+            'path' => __DIR__ . '/../../' . $configName,
             'config' => [
                 // 账户设置
                 'APP_USER' => getenv('APP_USER'),
@@ -70,6 +72,8 @@ class Config
                 'SMALLTV_HOURS' => array_map('intval', explode(',', getenv('SMALLTV_HOURS'))),
                 // 网络设置
                 'NETWORK_PROXY' => getenv('NETWORK_PROXY'),
+                'SOCKET_SERVER_PORT' => intval(getenv('SOCKET_SERVER_PORT')),
+                'SOCKET_SERVER_ADDR' => getenv('SOCKET_SERVER_ADDR'),
                 // 日志设置
                 'APP_DEBUG' => getenv('APP_DEBUG') === 'true',
                 'APP_MULTIPLE' => getenv('APP_MULTIPLE') === 'true',
