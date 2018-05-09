@@ -1,5 +1,50 @@
 # Release Notes
 
+## v0.9.1 (2018-05-09)
+
+### Added
+- 添加应援团签到功能
+- 添加扭蛋机功能（暂时支持普通扭蛋币）
+
+### Changed
+- [dev] 当配置文件为空时跳过写入
+- 当回调地址为空时跳过
+
+### Fixed
+- 兼容 PHP 5.6 版本测试 ([#37](https://github.com/metowolf/BilibiliHelper/issues/37))
+- 修复部分接口逻辑问题
+
+
+## v0.9.0-pre (2018-05-07)
+
+**该版本为非兼容更新，从 0.8.x 升级需要重新覆盖配置文件**
+
+### Added
+- 项目重构，为多帐号准备
+- 弹幕监听采用 websocket 接口 (https://github.com/varspool/Wrench)
+- 更换 guzzle 库，支持 CookieJar (https://github.com/guzzle/guzzle)
+- 添加网络代理支持
+
+### Changed
+- 修改插件逻辑
+
+### Fixed
+- 修复配置文件检测问题
+- 修复 debug 信息递归黑洞问题
+
+
+## v0.8.0 (2018-05-04)
+
+**该版本为非兼容更新，从 0.7.x 升级需要重新覆盖配置文件**
+
+### Added
+- 新增小电视抽奖功能 ([#18](https://github.com/metowolf/BilibiliHelper/issues/18))
+- 新增配置项检测
+
+### Changed
+- 修改部分时间锁逻辑
+- 修改部分日志提示
+
 ## v0.7.3 (2018-04-28)
 
 ### Added

@@ -3,12 +3,15 @@
     "description": "B 站自动领瓜子、直播挂机脚本",
     "type": "project",
     "require": {
-        "php": ">=5.4.0",
+        "php": ">=5.6.0",
         "ext-curl": "*",
         "ext-openssl": "*",
+        "ext-sockets": "*",
         "vlucas/phpdotenv": "^2.4",
         "monolog/monolog": "^1.23",
-        "bramus/monolog-colored-line-formatter": "^2.0"
+        "bramus/monolog-colored-line-formatter": "^2.0",
+        "guzzlehttp/guzzle": "^6.3",
+        "wrench/wrench": "~2.0"
     },
     "license": "MIT",
     "authors": [
@@ -20,7 +23,8 @@
     ],
     "autoload": {
         "psr-4": {
-            "metowolf\\Bilibili\\": "src/"
+            "BilibiliHelper\\Plugin\\": "src/plugins",
+            "BilibiliHelper\\Lib\\": "src/libs"
         }
     }
 }
