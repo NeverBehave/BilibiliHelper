@@ -65,3 +65,7 @@ CALLBACK_URL="http://www.example.com/api.send?text=[{level}]: {message}"
 #   ERROR   400
 #
 CALLBACK_LEVEL=400
+
+# 监听服务器设定
+SOCKET_SERVER_ADDR=127.0.0.1
+SOCKET_SERVER_PORT=5353
