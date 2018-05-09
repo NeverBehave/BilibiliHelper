@@ -13,6 +13,7 @@ require 'vendor/autoload.php';
 
 $plugins = [
 //    'websocket',
+    'socketClient',
     'auth',
     'capsule',
     'dailyBag',

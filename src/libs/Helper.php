@@ -43,7 +43,8 @@ class Helper
         $this->set('silver', Silver::getInstance());
         $this->set('smallTV', SmallTV::getInstance());
         $this->set('task', Task::getInstance());
-        $this->set('websocket', Danmaku::getInstance());
+        //$this->set('websocket', Danmaku::getInstance());
+        $this->set('socketClient', Danmaku::getInstance());
     }
 
     public function get($name)
