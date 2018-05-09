@@ -36,8 +36,8 @@ class SocketClient extends Base
 
     protected static function work()
     {
-        self::checkConnection();
         if (static::data('socket') !== NULL) {
+            self::checkConnection();
             $content = self::getContent();
             $parse = self::parse($content);
             self::unpack($parse);
@@ -50,13 +50,13 @@ class SocketClient extends Base
         $socket = static::data('socket');
         try {
             $socket->write('success');
+            Log::debug('监听服务器心跳包已正常发送！', []);
         } catch (\Exception $e) {
             // Looks like disconnect
             Log::warning('与监听服务器的连接好像断开了！', [$e->getMessage()]);
             $socket->close();
             static::$config['data'][static::PLUGIN_NAME]['socket'] = NULL;
         }
-        Log::debug('监听服务器心跳包已正常发送！', []);
     }
 
     protected static function getContent()
@@ -95,9 +95,11 @@ class SocketClient extends Base
     protected static function unpack(array $data)
     {
         foreach ($data as $pluginName => $section) {
-            foreach ($section as $pair) {
-                foreach ($pair as $key => $value) {
-                    self::setValue($pluginName, $section, $key, $value);
+            foreach ($section as $sectionName => $value) {
+                foreach ($value as $pair) {
+                    foreach ($pair as $k => $v) {
+                        self::setValue($pluginName, $sectionName, $k, $v);
+                    }
                 }
             }
         }
@@ -106,5 +108,6 @@ class SocketClient extends Base
     protected static function setValue($pluginName, $section, $key, $value)
     {
         static::$config['data'][$pluginName][$section][$key] = $value;
+        Log::debug('正在设置数据中： ' . $pluginName . ' ' . $section . ' ' . $key . ' ' . $value, []);
     }
 }
