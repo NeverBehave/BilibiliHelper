@@ -8,7 +8,12 @@
 
 
 # BilibiliHelper
-B 站直播实用脚本
+B 站直播实用脚本(**旧版**)
+
+## 说明
+
+`tools` 内工具用于批量生成配置文件
+`multiple .php` 启动所有位于`config`下的配置文件
 
 ## 功能组件
 
